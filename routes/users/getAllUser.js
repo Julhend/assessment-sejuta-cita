@@ -16,7 +16,7 @@ app.get('/user', async (req, res) => {
 
     res.sendWrapped(users, httpStatus.OK);
   } catch (error) {
-    res.sendWrapped(error.message, httpStatus.BAD_GATEWAY);
+    res.sendWrapped(error.message, httpStatus.BAD_REQUEST);
   }
 });
 

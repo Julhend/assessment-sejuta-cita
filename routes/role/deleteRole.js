@@ -1,4 +1,5 @@
 const express = require('express');
+const httpStatus = require('http-status');
 const errorMiddleware = require('../../middlewares/errorMiddleware');
 const RoleModel = require('../../model/roleModel');
 
@@ -10,7 +11,7 @@ app.delete('/role/:id', async (req, res, next) => {
     .catch((error) => {
       next(error);
     });
-  res.send('Ok');
+  res.sendWrapped('Ok', httpStatus.OK);
 });
 
 app.use(errorMiddleware);

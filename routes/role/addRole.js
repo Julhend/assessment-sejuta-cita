@@ -1,4 +1,5 @@
 const express = require('express');
+const httpStatus = require('http-status');
 const authorize = require('../../middlewares/authorizationMiddleware');
 const errorMiddleware = require('../../middlewares/errorMiddleware');
 const RoleModel = require('../../model/roleModel');
@@ -13,7 +14,7 @@ app.post('/role', async (req, res, next) => {
     .catch((error) => {
       next(error);
     });
-  res.send(result);
+  res.sendWrapped(result, httpStatus.CREATED);
 });
 
 app.use(errorMiddleware);

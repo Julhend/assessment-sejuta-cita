@@ -14,30 +14,32 @@ app.response.sendWrapped = function (data, statusCode = httpStatus.OK) {
 };
 
 const rootRoute = require('./routes/rootRoute');
+const registerRoute = require('./routes/auth/registerRoute');
+const loginRoute = require('./routes/auth/loginRoute');
+const addRole = require('./routes/role/addRole');
+const getQueryRole = require('./routes/role/getQueryRole');
+const editRole = require('./routes/role/editRole');
+const deleteRole = require('./routes/role/deleteRole');
+const createUser = require('./routes/users/createUser');
+const getAllUser = require('./routes/users/getAllUser');
+const getUserById = require('./routes/users/getUserById');
+const updateUserById = require('./routes/users/updateUserById');
+const deleteUserById = require('./routes/users/deletUserById');
 
 app.use(rootRoute);
-const registerRoute = require('./routes/auth/registerRoute');
-
 app.use(registerRoute);
-const loginRoute = require('./routes/auth/loginRoute');
-
 app.use(loginRoute);
-
-const addRole = require('./routes/role/addRole');
-
 app.use(addRole);
-
-const getQueryRole = require('./routes/role/getQueryRole');
-
 app.use(getQueryRole);
-const editRole = require('./routes/role/editRole');
-
 app.use(editRole);
-const deleteRole = require('./routes/role/deleteRole');
-
 app.use(deleteRole);
+app.use(createUser);
+app.use(getAllUser);
+app.use(getUserById);
+app.use(updateUserById);
+app.use(deleteUserById);
 
 const port = 3000;
 app.listen(port, () => {
-  console.log(`API was running on http://localhost:${port}`);
+  console.log(`Sejuta Cita API was running on http://localhost:${port}`);
 });

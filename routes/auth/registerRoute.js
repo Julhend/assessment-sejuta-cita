@@ -1,4 +1,5 @@
 const express = require('express');
+const httpStatus = require('http-status');
 const { hashPassword } = require('../../helpers/bcryptHelper');
 const { signJwt } = require('../../helpers/jwtHelper');
 const errorMiddleware = require('../../middlewares/errorMiddleware');
@@ -16,12 +17,10 @@ app.post('/auth/register', async (req, res, next) => {
       next(error);
     });
   if (insertResult) {
-    const token = signJwt(body);
     const result = {
       ...body,
-      token,
     };
-    res.send(result);
+    res.sendWrapped(result, httpStatus.CREATED);
   }
 });
 

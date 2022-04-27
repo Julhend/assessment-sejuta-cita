@@ -1,4 +1,5 @@
 const express = require('express');
+const httpStatus = require('http-status');
 const errorMiddleware = require('../../middlewares/errorMiddleware');
 const RoleModel = require('../../model/roleModel');
 
@@ -10,7 +11,7 @@ app.patch('/role/:id', async (req, res, next) => {
     .catch((error) => {
       next(error);
     });
-  res.send(updatedRole);
+  res.sendWrapped(updatedRole, httpStatus.OK);
 });
 
 app.use(errorMiddleware);

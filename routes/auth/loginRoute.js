@@ -1,4 +1,5 @@
 const express = require('express');
+const httpStatus = require('http-status');
 const { comparePassword } = require('../../helpers/bcryptHelper');
 const { signJwt } = require('../../helpers/jwtHelper');
 const UserModel = require('../../model/userModel');
@@ -15,17 +16,17 @@ app.post('/auth/login', async (req, res) => {
   if (searchResult) {
     const isPasswordMatch = await comparePassword(password, searchResult.password);
     if (isPasswordMatch) {
-      const token = signJwt({ id: searchResult.id });
+      const token = signJwt({ id: searchResult.id, role: searchResult.role });
       const result = {
         ...searchResult,
         token,
       };
-      res.send(result);
+      res.sendWrapped(result, httpStatus.OK);
     } else {
-      res.send('Password not match');
+      res.sendWrapped('Password not match', httpStatus.BAD_REQUEST);
     }
   } else {
-    res.send('User not found');
+    res.sendWrapped('User not found', httpStatus.NOT_FOUND);
   }
 });
 

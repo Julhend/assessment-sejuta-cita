@@ -20,7 +20,7 @@ app.delete('/user/:id', async (req, res) => {
 
     res.sendWrapped(user);
   } catch (error) {
-    res.sendWrapped(error.message, httpStatus.BAD_GATEWAY);
+    res.sendWrapped(error.message, httpStatus.BAD_REQUEST);
   }
 });
 
