@@ -2,8 +2,16 @@ require('dotenv').config();
 const express = require('express');
 
 const app = express();
+const httpStatus = require('http-status');
 
 app.use(express.json());
+
+app.response.sendWrapped = function (data, statusCode = httpStatus.OK) {
+  return this.status(statusCode).send({
+    status: statusCode,
+    data,
+  });
+};
 
 const rootRoute = require('./routes/rootRoute');
 
@@ -18,9 +26,7 @@ app.use(loginRoute);
 const addRole = require('./routes/role/addRole');
 
 app.use(addRole);
-const getRole = require('./routes/role/getRole');
 
-app.use(getRole);
 const getQueryRole = require('./routes/role/getQueryRole');
 
 app.use(getQueryRole);
