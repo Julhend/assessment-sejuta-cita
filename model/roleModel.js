@@ -7,4 +7,4 @@ const UserSchema = new mongoose.Schema({
 
 const UserModel = db.model('Role', UserSchema);
 
-module.exports = UserModel
+module.exports = UserModel;

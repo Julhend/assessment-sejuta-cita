@@ -7,16 +7,23 @@
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.0",
     "express": "^4.18.0",
+    "http-status": "^1.5.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.1"
   },
   "devDependencies": {
+    "eslint": "^8.14.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "nodemon": "^2.0.15"
   },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "lint:init": "eslint --init",
+    "lint:fix": "eslint . --fix"
   },
   "author": "Julhendri",
   "license": "ISC"

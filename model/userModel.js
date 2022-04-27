@@ -9,9 +9,9 @@ const UserSchema = new mongoose.Schema({
   phoneNumber: { type: String, required: true },
   gender: { type: String, required: true },
   lastName: { type: String, required: true },
-  role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" }
+  role: { type: mongoose.Schema.Types.ObjectId, ref: 'Role' },
 }, { timestamps: true });
 
 const UserModel = db.model('User', UserSchema);
 
-module.exports = UserModel
+module.exports = UserModel;
