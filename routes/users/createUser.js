@@ -4,13 +4,13 @@ const { hashPassword } = require('../../helpers/bcryptHelper');
 const authorize = require('../../middlewares/authorizationMiddleware');
 const errorMiddleware = require('../../middlewares/errorMiddleware');
 const UserModel = require('../../model/userModel');
-const { admin, basic } = require('../../middlewares/roleValidation');
+const { admin } = require('../../middlewares/roleValidation');
 
 const app = express();
 
 app.use(authorize);
 
-app.post('/user', async (req, res) => {
+app.post('/user', admin, async (req, res) => {
   try {
     const userBody = req.body;
 
