@@ -12,6 +12,8 @@ email: basic2@gmail.com
 password: 123zxc
 ```
 
+## Api Documentation
+Api Documentation [Postman](https://documenter.getpostman.com/view/13000455/UyrEhaQj).
 
 ## Script
 - `npm start` start this project
