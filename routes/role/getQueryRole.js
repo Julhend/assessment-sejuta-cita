@@ -6,15 +6,17 @@ const app = express();
 
 app.get('/role', async (req, res) => {
   const { search } = req.query;
+  let role;
   if (search) {
-    const role = await RoleModel
+    role = await RoleModel
       .find({
         roleName: { $regex: search },
       }).lean();
-
-    if (!role || !role.length) return res.sendWrapped('Not Found', httpStatus.NOT_FOUND);
-    res.sendWrapped(role, httpStatus.OK);
+  } else {
+    role = await await RoleModel.find();
   }
+  if (!role || !role.length) return res.sendWrapped('Not Found', httpStatus.NOT_FOUND);
+  res.sendWrapped(role, httpStatus.OK);
 });
 
 module.exports = app;

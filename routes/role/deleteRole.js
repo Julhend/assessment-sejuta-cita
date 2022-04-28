@@ -12,7 +12,7 @@ app.delete('/role/:id', admin, async (req, res, next) => {
     .catch((error) => {
       next(error);
     });
-  res.sendWrapped('Ok', httpStatus.OK);
+  res.sendWrapped('Role deleted successfully', httpStatus.OK);
 });
 
 app.use(errorMiddleware);
