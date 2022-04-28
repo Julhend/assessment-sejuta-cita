@@ -20,7 +20,7 @@ jobs:
           port: 22
           script: |
             cd /home/deployment/apps/assessment-sejuta-cita
-            git pull origin development
+            git pull origin main
             git status
             npm install
             pm2 restart 0
