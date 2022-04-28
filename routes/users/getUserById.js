@@ -9,9 +9,9 @@ const app = express();
 
 app.use(authorize);
 
-app.get('/user/:id', async (req, res) => {
+app.get('/user/data', async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.user;
 
     const user = await UserModel.findOne({ _id: id });
 

@@ -10,23 +10,35 @@ const roleName = async (role) => {
   return roles;
 };
 
-const admin = async (req, res, next) => {
-  const { role } = req.user;
+const basicRole = async (req, res, next) => {
+  const { role, id } = req.user;
+  const paramId = req.params;
+
   const checkRole = await roleName(role);
 
-  if (checkRole.roleName !== 'admin') next(res.sendWrapped('Access denied', httpStatus.FORBIDDEN));
-  next();
+  if (id !== paramId.id) {
+    if (checkRole.roleName !== 'admin') {
+      res.sendWrapped('Access denied', httpStatus.FORBIDDEN);
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 };
 
-const basic = async (req, res, next) => {
+const admin = async (req, res, next) => {
   const { role } = req.user;
+
   const checkRole = await roleName(role);
 
-  if (checkRole.roleName !== 'basic') next(res.sendWrapped('Access denied', httpStatus.FORBIDDEN));
+  if (checkRole.roleName !== 'admin') {
+    res.sendWrapped('Access denied', httpStatus.FORBIDDEN);
+  }
   next();
 };
 
 module.exports = {
-  basic,
+  basicRole,
   admin,
 };

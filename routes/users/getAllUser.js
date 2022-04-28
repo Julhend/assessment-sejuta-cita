@@ -9,7 +9,7 @@ const app = express();
 
 app.use(authorize);
 
-app.get('/user', async (req, res) => {
+app.get('/user', admin, async (req, res) => {
   try {
     const users = await UserModel.find();
 

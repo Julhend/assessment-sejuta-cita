@@ -16,7 +16,7 @@ app.post('/auth/login', async (req, res) => {
   if (searchResult) {
     const isPasswordMatch = await comparePassword(password, searchResult.password);
     if (isPasswordMatch) {
-      const token = signJwt({ id: searchResult.id, role: searchResult.role });
+      const token = signJwt({ id: searchResult._id, role: searchResult.role });
       const result = {
         ...searchResult,
         token,
